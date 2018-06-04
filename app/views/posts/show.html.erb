@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user.email %>
+</p>
+
+<p>
+  <%= @post.content %>
+</p>
+
+<p>
+  <% @post.comments.each do |comment| %>
+    <li><%= comment.content %> <em>said by <%= comment.user.email %> <%= time_ago_in_words comment.created_at %> ago </em>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', [:edit, @user, @post] if current_user == @post.user %>
+<%= link_to 'Add Comment', [:new, @user, @post, :comment] %>
